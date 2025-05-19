@@ -2,10 +2,11 @@ import { GetResumeData } from "@/app/api/db_operations"
 import { InterviewService } from "@/app/services/interview"
 import InterviewChat from "@/components/chat"
 
-interface PageProps {
-    params: {
+type Props = {
+    params: Promise<{
         "user-id": string
-    }
+    }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 interface Question {
@@ -13,8 +14,10 @@ interface Question {
     question: string
 }
 
-const StartInterview = async ({ params }: PageProps) => {
-    const userId = Number.parseInt(params["user-id"] || "0")
+const StartInterview = async ({ params, searchParams }: Props) => {
+    const resolvedParams = await params
+    const resolvedSearchParams = await searchParams
+    const userId = Number.parseInt(resolvedParams["user-id"] || "0")
     if (isNaN(userId)) {
         return (
             <div className="flex items-center justify-center w-full h-screen bg-gray-900">

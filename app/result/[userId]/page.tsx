@@ -1,14 +1,17 @@
 import React from 'react'
 import { GetUserInterviewData } from '@/app/api/db_operations'
 
-interface PageProps {
-    params: {
+type Props = {
+    params: Promise<{
         userId: string
-    }
+    }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-const ResultPage = async ({ params }: PageProps) => {
-    const userId = Number.parseInt(params.userId || "0")
+const ResultPage = async ({ params, searchParams }: Props) => {
+    const resolvedParams = await params
+    const resolvedSearchParams = await searchParams
+    const userId = Number.parseInt(resolvedParams.userId || "0")
     if (isNaN(userId)) {
         return (
             <div className="flex items-center justify-center w-full h-screen bg-black">
