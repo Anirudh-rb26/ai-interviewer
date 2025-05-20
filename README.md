@@ -13,8 +13,6 @@ An intelligent interviewing platform that conducts automated interviews based on
 
 <img width="100%" src="demo/Screenshot 2025-05-20 045153.png" alt="Screenshot of the application">
 
-**[Live Demo](https://google.com)** ← _Placeholder link: Live demo coming soon_
-
 ## Features
 
 - **Resume & Job Description Upload**: Initiate interviews with personalized questions based on candidate qualifications and job requirements
